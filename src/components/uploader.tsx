@@ -1,19 +1,17 @@
-'use client';
-
-import { UploadButton } from "@/lib/uploadthing";
-
-export default function Uploader() {
-    return <UploadButton
-        className="justify-start items-start ut-button:bg-primary"
-        endpoint="imageUploader"
-        onClientUploadComplete={(res) => {
-            // Do something with the response
-            console.log("Files: ", res);
-            alert("Upload Completed");
-        }}
-        onUploadError={(error: Error) => {
-            // Do something with the error.
-            alert(`ERROR! ${error.message}`);
-        }}
-    />
+export default function Uploader({
+    onUploadFileSelected,
+    maxFileSize
+}: { onUploadFileSelected: (file: File) => void; maxFileSize: string | null | undefined }) {
+    return <>
+        <input
+            type="file"
+            name='files'
+            onChange={(e) => {
+                const file = e.target.files?.[0];
+                if (!file) return;
+                onUploadFileSelected(file);
+            }}
+        />
+        {maxFileSize}
+    </>
 }

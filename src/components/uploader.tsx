@@ -4,6 +4,7 @@ import { UploadButton } from "@/lib/uploadthing";
 
 export default function Uploader() {
     return <UploadButton
+        className="justify-start items-start ut-button:bg-primary"
         endpoint="imageUploader"
         onClientUploadComplete={(res) => {
             // Do something with the response

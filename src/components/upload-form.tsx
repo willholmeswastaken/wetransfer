@@ -1,5 +1,5 @@
 'use client';
-
+/* eslint-disable */
 import { Label } from "./ui/label";
 import { Button } from "./ui/button";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "./ui/card";

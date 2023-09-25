@@ -5,6 +5,8 @@ import { Button } from "./ui/button";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "./ui/card";
 import { Input } from "./ui/input";
 import { experimental_useFormStatus as useFormStatus } from "react-dom";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import { experimental_useFormState as useFormState } from "react-dom";
 import { sendFile } from '../app/actions';
 import { Alert, AlertTitle } from "./ui/alert";

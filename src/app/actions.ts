@@ -13,21 +13,22 @@ const schema = z.object({
   message: z.string(),
 });
 
-export const sendFile = async (prevState: unknown, formData: FormData) => {
+export const sendFile = async (_prevState: unknown, formData: FormData) => {
   try {
-    console.log("in");
     const parsed = schema.parse({
       files: formData.getAll("files"),
       email: formData.get("email"),
       title: formData.get("title"),
       message: formData.get("message"),
     });
+
     const files = formData.getAll("files");
     console.log("Uploading to uploadthing");
     const fileResponse = await utapi.uploadFiles(files);
-    console.log("setting up a resend");
-    const resend = new Resend(env.RESEND_API_KEY);
+    console.log("Uploaded file to uploadthing");
 
+    const resend = new Resend(env.RESEND_API_KEY);
+    console.log(`Sending email to ${parsed.email}`);
     const emailResponse = await resend.emails.send({
       from: "onboarding@resend.dev",
       to: parsed.email,
@@ -35,11 +36,14 @@ export const sendFile = async (prevState: unknown, formData: FormData) => {
       html: `<h1>File from: ${parsed.email}</h2> <br /> <p>${parsed.message}</p> <br /> <p>Click <a href='${fileResponse[0]?.data?.url}'>Here</a> to download.`,
     });
 
-    console.log("Done!");
+    console.log(
+      `Sent email to ${parsed.email} with resend id: ${emailResponse.id}`,
+    );
 
     revalidatePath("/");
     return { message: `File sent to ${parsed.email}` };
-  } catch {
+  } catch (e) {
+    console.error(e);
     return { message: "Failed to create" };
   }
 };

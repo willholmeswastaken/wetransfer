@@ -39,12 +39,9 @@ export default function UploadForm() {
                     </CardHeader>
                     <CardContent >
                         <div className="space-y-4" >
-                            <div className="self-start justify-self-start space-y-2" >
-                                <input
-                                    type="file"
-                                    name='files'
-                                />
-                                4MB
+                            <div className="self-start justify-self-start space-y-2 flex flex-col" >
+                                <input type="file" name='files' />
+                                <span className="text-xs">Max File Size 4MB</span>
                             </div>
                             <div className="space-y-2" >
                                 <Label htmlFor="email">

@@ -32,8 +32,8 @@ export const sendFile = async (_prevState: unknown, formData: FormData) => {
     const emailResponse = await resend.emails.send({
       from: "willtransfer@willdevsapps.com",
       to: parsed.email,
-      subject: parsed.title,
-      html: `<h1>File from: ${parsed.email}</h2> <br /> <p>${parsed.message}</p> <br /> <p>Click <a href='${fileResponse[0]?.data?.url}'>Here</a> to download.`,
+      subject: `WillTransfer - ${parsed.email} sent you a file`,
+      html: `<h2>File from:</h2> ${parsed.email} <br /> <h3>Title:</h3> ${parsed.title} <br /> <h3>Description:</h3> <p>${parsed.message}</p> <br /> <p>Click <a href='${fileResponse[0]?.data?.url}'>Here</a> to download.`,
     });
 
     console.log(

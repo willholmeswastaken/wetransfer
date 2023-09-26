@@ -30,7 +30,7 @@ export const sendFile = async (_prevState: unknown, formData: FormData) => {
     const resend = new Resend(env.RESEND_API_KEY);
     console.log(`Sending email to ${parsed.email}`);
     const emailResponse = await resend.emails.send({
-      from: "onboarding@resend.dev",
+      from: "willtransfer@willdevsapps.com",
       to: parsed.email,
       subject: parsed.title,
       html: `<h1>File from: ${parsed.email}</h2> <br /> <p>${parsed.message}</p> <br /> <p>Click <a href='${fileResponse[0]?.data?.url}'>Here</a> to download.`,
